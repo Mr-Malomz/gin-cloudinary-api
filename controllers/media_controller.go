@@ -11,9 +11,8 @@ import (
 
 func FileUpload() gin.HandlerFunc {
 	return func(c *gin.Context) {
-
 		//upload
-		formfile, _, err := c.Request.FormFile("file")
+		formFile, _, err := c.Request.FormFile("file")
 		if err != nil {
 			c.JSON(
 				http.StatusInternalServerError,
@@ -25,7 +24,7 @@ func FileUpload() gin.HandlerFunc {
 			return
 		}
 
-		uploadUrl, err := services.NewMediaUpload().FileUpload(models.File{File: formfile})
+		uploadUrl, err := services.NewMediaUpload().FileUpload(models.File{File: formFile})
 		if err != nil {
 			c.JSON(
 				http.StatusInternalServerError,
@@ -54,11 +53,11 @@ func RemoteUpload() gin.HandlerFunc {
 		//validate the request body
 		if err := c.BindJSON(&url); err != nil {
 			c.JSON(
-				http.StatusBadRequest, 
+				http.StatusBadRequest,
 				dtos.MediaDto{
-					StatusCode: http.StatusBadRequest, 
-					Message: "error", 
-					Data: map[string]interface{}{"data": err.Error()},
+					StatusCode: http.StatusBadRequest,
+					Message:    "error",
+					Data:       map[string]interface{}{"data": err.Error()},
 				})
 			return
 		}

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gin-cloudinary-api/controllers"
+	"gin-cloudinary-api/controllers" //add this
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,6 +9,7 @@ import (
 func main() {
 	router := gin.Default()
 
+	//add
 	router.POST("/file", controllers.FileUpload())
 	router.POST("/remote", controllers.RemoteUpload())
 

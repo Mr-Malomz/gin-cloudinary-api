@@ -11,18 +11,18 @@ var (
 	validate = validator.New()
 )
 
-type media interface {
+type mediaUpload interface {
 	FileUpload(file models.File) (string, error)
 	RemoteUpload(url models.Url) (string, error)
 }
 
-type mediaUpload struct {}
+type media struct {}
 
-func NewMediaUpload() media {
-	return &mediaUpload{}
+func NewMediaUpload() mediaUpload {
+	return &media{}
 }
 
-func (*mediaUpload) FileUpload(file models.File) (string, error) {
+func (*media) FileUpload(file models.File) (string, error) {
 	//validate
 	err := validate.Struct(file)
 	if err != nil {
@@ -38,7 +38,7 @@ func (*mediaUpload) FileUpload(file models.File) (string, error) {
 	return uploadUrl, nil
 }
 
-func (*mediaUpload) RemoteUpload(url models.Url) (string, error) {
+func (*media) RemoteUpload(url models.Url) (string, error) {
 	//validate
 	err := validate.Struct(url)
 	if err != nil {

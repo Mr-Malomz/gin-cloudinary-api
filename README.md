@@ -1,4 +1,4 @@
-# gin-mongo-api
+# gin-cloudinary-api
 
 Robust media upload with Golang and Cloudinary - Gin-gonic Version
 
